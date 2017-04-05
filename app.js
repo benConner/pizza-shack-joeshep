@@ -4,15 +4,17 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const routes = require('./routes/')
+const bodyParser = require('body-parser');
 
 //pug config
 app.set('view engine', 'pug');
 
 app.locals.company = '🇮🇹Pizza Shack🍕'
 app.locals.body = {};
-app.locals.body.magic = 'Fooooo!'
+app.locals.body.magic = 'Foooood!'
 
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(routes);
 
 app.use((req, res) => {
